@@ -1,11 +1,12 @@
-import { Entity } from "../../domain/entity";
-import { NotFoundError } from "../../domain/errors/not-found.error";
-import { IRepository } from "../../domain/repository/repository-interface";
-import { ValueObject } from "../../domain/value-object";
+import { Entity } from "../../../domain/entity";
+import { NotFoundError } from "../../../domain/errors/not-found.error";
+import { IRepository } from "../../../domain/repository/repository-interface";
+import { ValueObject } from "../../../domain/value-object";
 
 export abstract class InMemoryRepository<E extends Entity, EntityId extends ValueObject> implements IRepository<E, EntityId> {
     
     items: E[] = [];
+
     async insert(entity: E): Promise<void> {
         this.items.push(entity);
     }
@@ -42,6 +43,7 @@ export abstract class InMemoryRepository<E extends Entity, EntityId extends Valu
     async findAll(): Promise<E[]> {
         return this.items;
     }
+
     abstract getEntity(): new (...args: any[]) => E;
 
 }
