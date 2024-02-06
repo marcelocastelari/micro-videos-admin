@@ -11,7 +11,7 @@ describe("CategoryModel Integration Tests", () => {
             models: [CategoryModel],
         });
         await sequelize.sync({ force: true });
-    })
+    });
 
     test("mapping props", () => {
         const attributesMap = CategoryModel.getAttributes();
